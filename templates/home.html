@@ -1,0 +1,17 @@
+<h2>Send Email</h2>
+
+{% if user.is_authenticated %}
+  <p>Logged in as: {{ user.email }}</p>
+
+  <form method="post" action="/send/">
+    {% csrf_token %}
+    <input type="email" name="to" placeholder="Recipient"><br>
+    <input type="text" name="subject" placeholder="Subject"><br>
+    <textarea name="body" placeholder="Message"></textarea><br>
+    <button type="submit">Send</button>
+  </form>
+
+  <a href="/accounts/logout/">Logout</a>
+{% else %}
+  <a href="/accounts/google/login/">Login with Google</a>
+{% endif %}
